@@ -74,4 +74,4 @@ phases:
       - export AWS_ACCESS_KEY_ID="AKIAVOSSSJEQ35M2AYTV"
       - export AWS_SECRET_ACCESS_KEY="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"
       - aws eks update-kubeconfig --name eks-microservices-demo-cluster --region ap-northeast-1
-      - kubectl apply -f kubernetes-manifests.yaml
+      - kubectl apply -f release/kubernetes-manifests.yaml
