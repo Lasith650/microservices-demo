@@ -71,3 +71,4 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
       - docker push $REPOSITORY_URI:shippingservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
+
