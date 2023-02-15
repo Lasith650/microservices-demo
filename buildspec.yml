@@ -90,3 +90,4 @@ phases:
       - docker push $REPOSITORY_URI:shippingservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
       - kubectl apply -f release/kubernetes-manifests.yaml
+      - kubectl delete --all pods --namespace=default
