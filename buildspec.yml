@@ -58,8 +58,6 @@ phases:
       - docker tag $REPOSITORY_URI:shippingservice $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
       - docker build src/emailservice -t $REPOSITORY_URI:emailservice
       - docker tag $REPOSITORY_URI:emailservice $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
-      - echo kubernetes-manifests.yaml
-      - cat release/kubernetes-manifests.yaml
   post_build:
     commands:
       - echo Build completed on `date`
@@ -87,3 +85,5 @@ phases:
       - docker push $REPOSITORY_URI:shippingservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
       - kubectl apply -f release/kubernetes-manifests.yaml
+      - echo kubernetes-manifests.yaml
+      - cat release/kubernetes-manifests.yaml
