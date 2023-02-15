@@ -49,8 +49,8 @@ phases:
       - docker tag $REPOSITORY_URI:checkoutservice $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
       - docker build src/currencyservice -t $REPOSITORY_URI:currencyservice
       - docker tag $REPOSITORY_URI:currencyservice $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
-      - docker build src/frontend -t $REPOSITORY_URI:frontend
-      - docker tag $REPOSITORY_URI:frontend $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
+      - docker build src/frontend -t $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_FRONTEND $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker build src/loadgenerator -t $REPOSITORY_URI:loadgenerator
       - docker tag $REPOSITORY_URI:loadgenerator $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
       - docker build src/paymentservice -t $REPOSITORY_URI:paymentservice
@@ -63,7 +63,6 @@ phases:
       - docker tag $REPOSITORY_URI:shippingservice $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
       - docker build src/emailservice -t $REPOSITORY_URI:emailservice
       - docker tag $REPOSITORY_URI:emailservice $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
-      - echo kubernetes-manifests.yaml
   post_build:
     commands:
       - echo Build completed on `date`
@@ -78,7 +77,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
       - docker push $REPOSITORY_URI:emailservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
-      - docker push $REPOSITORY_URI:frontend
+      - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker push $REPOSITORY_URI:loadgenerator
       - docker push $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
