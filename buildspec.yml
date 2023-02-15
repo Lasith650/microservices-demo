@@ -21,17 +21,22 @@ phases:
       - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
       - REPOSITORY_URI=374909061409.dkr.ecr.ap-northeast-1.amazonaws.com/microservices-demo
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - TAG="$(date +%Y-%m-%d.%H.%M.%S)"
+      - echo This is the Tag
+      - echo $TAG
       - IMAGE_TAG_ADSERVICE=adservice
       - IMAGE_TAG_CARTSERVICE=cartservice
       - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice
       - IMAGE_TAG_CURRENCYSERVICE=currencyservice
       - IMAGE_TAG_EMAILSERVICE=emailservice
-      - IMAGE_TAG_FRONTEND=frontend
+      - IMAGE_TAG_FRONTEND=frontend{{ TAG }}
       - IMAGE_TAG_LOADGENERATOR=loadgenerator
       - IMAGE_TAG_PAYMENTSERVICE=paymentservice
       - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice
       - IMAGE_TAG_RECOMMENDATIONSERVICE=recommendationservice
       - IMAGE_TAG_SHIPPINGSERVICE=shippingservice
+      - sed -i 's@CONTAINER_IMAGE_FRONTEND@'"$REPOSITORY_URI:$IMAGE_TAG_FRONTEND"'@' release/kubernetes-manifests.yaml
+      - cat release/kubernetes-manifests.yaml
   build:
     commands:
       - echo Build started on `date`
@@ -59,7 +64,6 @@ phases:
       - docker build src/emailservice -t $REPOSITORY_URI:emailservice
       - docker tag $REPOSITORY_URI:emailservice $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
       - echo kubernetes-manifests.yaml
-      - cat release/kubernetes-manifests.yaml
   post_build:
     commands:
       - echo Build completed on `date`
