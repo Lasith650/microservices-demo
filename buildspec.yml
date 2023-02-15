@@ -29,7 +29,7 @@ phases:
       - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice
       - IMAGE_TAG_CURRENCYSERVICE=currencyservice
       - IMAGE_TAG_EMAILSERVICE=emailservice
-      - IMAGE_TAG_FRONTEND=frontend{{ TAG }}
+      - IMAGE_TAG_FRONTEND=frontend$TAG
       - IMAGE_TAG_LOADGENERATOR=loadgenerator
       - IMAGE_TAG_PAYMENTSERVICE=paymentservice
       - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice
