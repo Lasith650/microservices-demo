@@ -25,7 +25,7 @@ images:
   newName: CONTAINER_IMAGES_REGISTRY/currencyservice
 - name: gcr.io/google-samples/microservices-demo/emailservice
   newName: CONTAINER_IMAGES_REGISTRY/emailservice
-- name: gcr.io/google-samples/microservices-demo/frontend
+- name: 374909061409.dkr.ecr.ap-northeast-1.amazonaws.com/microservices-demo:frontend
   newName: CONTAINER_IMAGES_REGISTRY/frontend
 - name: gcr.io/google-samples/microservices-demo/loadgenerator
   newName: CONTAINER_IMAGES_REGISTRY/loadgenerator

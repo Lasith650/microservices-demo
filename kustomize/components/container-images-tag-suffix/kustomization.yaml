@@ -25,7 +25,7 @@ images:
   tagSuffix: CONTAINER_IMAGES_TAG_SUFFIX
 - name: gcr.io/google-samples/microservices-demo/emailservice
   tagSuffix: CONTAINER_IMAGES_TAG_SUFFIX
-- name: gcr.io/google-samples/microservices-demo/frontend
+- name: 374909061409.dkr.ecr.ap-northeast-1.amazonaws.com/microservices-demo:frontend
   tagSuffix: CONTAINER_IMAGES_TAG_SUFFIX
 - name: gcr.io/google-samples/microservices-demo/loadgenerator
   tagSuffix: CONTAINER_IMAGES_TAG_SUFFIX
