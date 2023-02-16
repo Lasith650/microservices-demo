@@ -86,4 +86,3 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
-      - kubectl delete --all pods --namespace=default
