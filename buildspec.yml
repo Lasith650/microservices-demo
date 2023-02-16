@@ -24,7 +24,7 @@ phases:
       - TAG="$(date +%Y-%m-%d.%H.%M.%S)"
       - echo This is the Tag
       - echo $TAG
-      - IMAGE_TAG_ADSERVICE=adservice$TAG
+      - IMAGE_TAG_ADSERVICE=adservice
       - IMAGE_TAG_CARTSERVICE=cartservice$TAG
       - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice$TAG
       - IMAGE_TAG_CURRENCYSERVICE=currencyservice$TAG
@@ -52,8 +52,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker images...
-      - docker build src/adservice -t $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
-      - docker tag $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
       - docker build src/cartservice/src -t $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker build src/checkoutservice -t $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
@@ -78,7 +76,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
