@@ -78,7 +78,6 @@ phases:
       - docker push $REPOSITORY_URI:emailservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
-      - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker push $REPOSITORY_URI:loadgenerator
       - docker push $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
       - docker push $REPOSITORY_URI:paymentservice
