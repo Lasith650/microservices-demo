@@ -13,7 +13,7 @@ phases:
       - mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
       - aws-iam-authenticator help
       # Configure kubectl
-      - aws eks --region ap-northeast-1 update-kubeconfig --name deployment-cluster
+      - aws eks --region ap-northeast-1 update-kubeconfig --name microservises-demo-deployment-cluster
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -25,16 +25,16 @@ phases:
       - echo This is the Tag
       - echo $TAG
       - IMAGE_TAG_ADSERVICE=adservice
-      - IMAGE_TAG_CARTSERVICE=cartservice$TAG
-      - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice$TAG
-      - IMAGE_TAG_CURRENCYSERVICE=currencyservice$TAG
-      - IMAGE_TAG_EMAILSERVICE=emailservice$TAG
+      - IMAGE_TAG_CARTSERVICE=cartservice
+      - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice
+      - IMAGE_TAG_CURRENCYSERVICE=currencyservice
+      - IMAGE_TAG_EMAILSERVICE=emailservice
       - IMAGE_TAG_FRONTEND=frontend$TAG
-      - IMAGE_TAG_LOADGENERATOR=loadgenerator$TAG
-      - IMAGE_TAG_PAYMENTSERVICE=paymentservice$TAG
-      - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice$TAG
-      - IMAGE_TAG_RECOMMENDATIONSERVICE=recommendationservice$TAG
-      - IMAGE_TAG_SHIPPINGSERVICE=shippingservice$TAG
+      - IMAGE_TAG_LOADGENERATOR=loadgenerator
+      - IMAGE_TAG_PAYMENTSERVICE=paymentservice
+      - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice
+      - IMAGE_TAG_RECOMMENDATIONSERVICE=recommendationservice
+      - IMAGE_TAG_SHIPPINGSERVICE=shippingservice
       # Adding the image url
       - sed -i 's@CONTAINER_IMAGE_ADSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_ADSERVICE"'@' release/kubernetes-manifests.yaml
       - sed -i 's@CONTAINER_IMAGE_CARTSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE"'@' release/kubernetes-manifests.yaml
