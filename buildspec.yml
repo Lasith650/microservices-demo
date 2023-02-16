@@ -47,7 +47,6 @@ phases:
       - sed -i 's@CONTAINER_IMAGE_PRODUCTCATALOGSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE"'@' release/kubernetes-manifests.yaml
       - sed -i 's@CONTAINER_IMAGE_RECOMMENDATIONSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE"'@' release/kubernetes-manifests.yaml
       - sed -i 's@CONTAINER_IMAGE_SHIPPINGSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE"'@' release/kubernetes-manifests.yaml
-      - cat release/kubernetes-manifests.yaml
   build:
     commands:
       - echo Build started on `date`
@@ -56,8 +55,6 @@ phases:
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker build src/checkoutservice -t $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
-      - docker build src/currencyservice -t $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
-      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
       - docker build src/frontend -t $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_FRONTEND $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker build src/loadgenerator -t $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
@@ -78,7 +75,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
-      - docker push $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker push $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
