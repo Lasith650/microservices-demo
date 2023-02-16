@@ -53,8 +53,8 @@ phases:
       - echo Building the Docker images...
       - docker build src/cartservice/src -t $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
-      - docker build src/checkoutservice -t $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
-      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
+#      - docker build src/checkoutservice -t $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
+#      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
       - docker build src/frontend -t $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_FRONTEND $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker build src/loadgenerator -t $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
@@ -74,7 +74,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
-      - docker push $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
+#      - docker push $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker push $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
