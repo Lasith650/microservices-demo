@@ -24,69 +24,69 @@ phases:
       - TAG="$(date +%Y-%m-%d.%H.%M.%S)"
       - echo This is the Tag
       - echo $TAG
-      - IMAGE_TAG_ADSERVICE=adservice
-      - IMAGE_TAG_CARTSERVICE=cartservice
-      - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice
-      - IMAGE_TAG_CURRENCYSERVICE=currencyservice
-      - IMAGE_TAG_EMAILSERVICE=emailservice
+      - IMAGE_TAG_ADSERVICE=adservice$TAG
+      - IMAGE_TAG_CARTSERVICE=cartservice$TAG
+      - IMAGE_TAG_CHECKOUTSERVICE=checkoutservice$TAG
+      - IMAGE_TAG_CURRENCYSERVICE=currencyservice$TAG
+      - IMAGE_TAG_EMAILSERVICE=emailservice$TAG
       - IMAGE_TAG_FRONTEND=frontend$TAG
-      - IMAGE_TAG_LOADGENERATOR=loadgenerator
-      - IMAGE_TAG_PAYMENTSERVICE=paymentservice
-      - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice
-      - IMAGE_TAG_RECOMMENDATIONSERVICE=recommendationservice
-      - IMAGE_TAG_SHIPPINGSERVICE=shippingservice
+      - IMAGE_TAG_LOADGENERATOR=loadgenerator$TAG
+      - IMAGE_TAG_PAYMENTSERVICE=paymentservice$TAG
+      - IMAGE_TAG_PRODUCTCATALOGSERVICE=productcatalogservice$TAG
+      - IMAGE_TAG_RECOMMENDATIONSERVICE=recommendationservice$TAG
+      - IMAGE_TAG_SHIPPINGSERVICE=shippingservice$TAG
+      # Adding the image url
+      - sed -i 's@CONTAINER_IMAGE_ADSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_ADSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_CARTSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_CHECKOUTSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_CURRENCYSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_EMAILSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE"'@' release/kubernetes-manifests.yaml
       - sed -i 's@CONTAINER_IMAGE_FRONTEND@'"$REPOSITORY_URI:$IMAGE_TAG_FRONTEND"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_LOADGENERATOR@'"$REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_PAYMENTSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_PRODUCTCATALOGSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_RECOMMENDATIONSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE"'@' release/kubernetes-manifests.yaml
+      - sed -i 's@CONTAINER_IMAGE_SHIPPINGSERVICE@'"$REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE"'@' release/kubernetes-manifests.yaml
       - cat release/kubernetes-manifests.yaml
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build src/adservice -t $REPOSITORY_URI:adservice
-      - docker tag $REPOSITORY_URI:adservice $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
-      - docker build src/cartservice/src -t $REPOSITORY_URI:cartservice
-      - docker tag $REPOSITORY_URI:cartservice $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
-      - docker build src/checkoutservice -t $REPOSITORY_URI:checkoutservice
-      - docker tag $REPOSITORY_URI:checkoutservice $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
-      - docker build src/currencyservice -t $REPOSITORY_URI:currencyservice
-      - docker tag $REPOSITORY_URI:currencyservice $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
+      - echo Building the Docker images...
+      - docker build src/adservice -t $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
+      - docker build src/cartservice/src -t $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
+      - docker build src/checkoutservice -t $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
+      - docker build src/currencyservice -t $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
       - docker build src/frontend -t $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
       - docker tag $REPOSITORY_URI:$IMAGE_TAG_FRONTEND $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
-      - docker build src/loadgenerator -t $REPOSITORY_URI:loadgenerator
-      - docker tag $REPOSITORY_URI:loadgenerator $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
-      - docker build src/paymentservice -t $REPOSITORY_URI:paymentservice
-      - docker tag $REPOSITORY_URI:paymentservice $REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE
-      - docker build src/productcatalogservice -t $REPOSITORY_URI:productcatalogservice
-      - docker tag $REPOSITORY_URI:productcatalogservice $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
-      - docker build src/recommendationservice -t $REPOSITORY_URI:recommendationservice
-      - docker tag $REPOSITORY_URI:recommendationservice $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
-      - docker build src/shippingservice -t $REPOSITORY_URI:shippingservice
-      - docker tag $REPOSITORY_URI:shippingservice $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
-      - docker build src/emailservice -t $REPOSITORY_URI:emailservice
-      - docker tag $REPOSITORY_URI:emailservice $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
+      - docker build src/loadgenerator -t $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
+      - docker build src/paymentservice -t $REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE $REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE
+      - docker build src/productcatalogservice -t $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
+      - docker build src/recommendationservice -t $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
+      - docker build src/shippingservice -t $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
+      - docker build src/emailservice -t $REPOSITORY_URI:IMAGE_TAG_EMAILSERVICE
+      - docker tag $REPOSITORY_URI:IMAGE_TAG_EMAILSERVICE $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:adservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_ADSERVICE
-      - docker push $REPOSITORY_URI:cartservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CARTSERVICE
-      - docker push $REPOSITORY_URI:checkoutservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CHECKOUTSERVICE
-      - docker push $REPOSITORY_URI:currencyservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_CURRENCYSERVICE
-      - docker push $REPOSITORY_URI:emailservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_EMAILSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_FRONTEND
-      - docker push $REPOSITORY_URI:loadgenerator
       - docker push $REPOSITORY_URI:$IMAGE_TAG_LOADGENERATOR
-      - docker push $REPOSITORY_URI:paymentservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_PAYMENTSERVICE
-      - docker push $REPOSITORY_URI:productcatalogservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
-      - docker push $REPOSITORY_URI:recommendationservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
-      - docker push $REPOSITORY_URI:shippingservice
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
-      - kubectl apply -f release/kubernetes-manifests.yaml
       - kubectl delete --all pods --namespace=default
