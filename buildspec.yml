@@ -14,6 +14,8 @@ phases:
       - aws-iam-authenticator help
       # Configure kubectl
       - aws eks --region ap-northeast-1 update-kubeconfig --name microservises-demo-deployment-cluster
+      # Install the AWS CLI
+      - apt-get update && apt-get install -y awscli
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -82,4 +84,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG_PRODUCTCATALOGSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_RECOMMENDATIONSERVICE
       - docker push $REPOSITORY_URI:$IMAGE_TAG_SHIPPINGSERVICE
+      # Upload a file to the S3 bucket
+      - aws s3 cp release/kubernetes-manifests.yaml s3://microservices-demo-new/
       - kubectl apply -f release/kubernetes-manifests.yaml
+      - kubectl delete --all pods --namespace=default
